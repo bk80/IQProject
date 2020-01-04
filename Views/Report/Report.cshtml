@@ -1,0 +1,84 @@
+@model IEnumerable<IQMVCProject.Model.Product>
+
+@{
+    ViewBag.Title = "Product Managment";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h3 class="list-group-item-heading text-center notextselect">Product Managment</h3>
+
+<div class="col-lg-9">
+    <h4>List Of Products</h4>
+    
+    @using (Html.BeginForm()){    
+         <p> Title: @Html.TextBox("SearchString") <br />   
+         <input type="submit" value="Filter" /></p> 
+        }
+
+    <table id="datatable" class="table table-bordered table-striped table-condensed table-responsive">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.ProductName)
+                </th>
+                @* <th>
+                    @Html.DisplayNameFor(model => model.SubCategory)
+                </th> *@
+                <th>
+                    @Html.DisplayNameFor(model => model.CustomerName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PhoneNumber)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CustomerNotes)
+                </th>
+
+                @* <th style="width: 150px">
+                    Actions
+                </th> *@
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ProductName)
+                    </td>
+                    @* <td>
+                        @Html.DisplayFor(modelItem => item.SubCategory.Name)
+                    </td> *@
+                    <td>
+                        @string.Format("{0:N0}", item.CustomerName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PhoneNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CustomerNotes)
+                    </td>
+
+                    @* <td class="text-center">
+                        @Html.ActionLink("Edit", "EditProduct", new { id = item.Id }) |
+                        @Html.ActionLink("Details", "ProductDetails", new { id = item.Id }) |
+                        @Html.ActionLink("Delete", "DeleteProduct", new { id = item.Id })
+                    </td> *@
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+ <div class="col-lg-6 form-group">
+                            <label>Page Size</label>
+                            <div id="pagesize" name="pagesize">
+                                @Html.DropDownList("pageSize", (IEnumerable<SelectListItem>)ViewBag.pageSize, "- pageSizes -", new { @class = "form-control text-center",onchange = "SelectedIndexChanged()" })
+                            </div>
+                        </div> 
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    @Html.ActionLink("Back to List", "Index")
+                </div>
+            </div>
+        </div>
