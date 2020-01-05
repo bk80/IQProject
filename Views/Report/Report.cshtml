@@ -1,4 +1,4 @@
-@model IEnumerable<IQMVCProject.Model.Product>
+@model IEnumerable<IQMVCProject.Model.Inquiries>
 
 @{
     ViewBag.Title = "Product Managment";
@@ -18,13 +18,13 @@
         <thead>
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.ProductName)
+                    @Html.DisplayNameFor(model => model.CustomerName)
                 </th>
                 @* <th>
                     @Html.DisplayNameFor(model => model.SubCategory)
                 </th> *@
                 <th>
-                    @Html.DisplayNameFor(model => model.CustomerName)
+                    @Html.DisplayNameFor(model => model.Address)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.PhoneNumber)
@@ -44,13 +44,13 @@
             {
                 <tr>
                     <td>
-                        @Html.DisplayFor(modelItem => item.ProductName)
+                        @Html.DisplayFor(modelItem => item.CustomerName)
                     </td>
                     @* <td>
                         @Html.DisplayFor(modelItem => item.SubCategory.Name)
                     </td> *@
                     <td>
-                        @string.Format("{0:N0}", item.CustomerName)
+                        @string.Format("{0:N0}", item.Address)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.PhoneNumber)
@@ -68,13 +68,12 @@
             }
         </tbody>
     </table>
-</div>
-
- <div class="col-lg-6 form-group">
+     <div class="col-lg-6 form-group">
                             <label>Page Size</label>
                             <div id="pagesize" name="pagesize">
-                                @Html.DropDownList("pageSize", (IEnumerable<SelectListItem>)ViewBag.pageSize, "- pageSizes -", new { @class = "form-control text-center",onchange = "SelectedIndexChanged()" })
-                            </div>
+ 
+                                @Html.DropDownList("pageSize", (IEnumerable<SelectListItem>)ViewBag.pageSize, "- pageSizes -", new { @class = "form-control text-center" })
+</div>
                         </div> 
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
@@ -82,3 +81,5 @@
                 </div>
             </div>
         </div>
+</div>
+
