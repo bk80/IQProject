@@ -1,0 +1,15 @@
+Create New MVC project and directory (VS Code)
+------------------------------------
+1) dotnet new mvc -o IQMVCProject  
+2) code -r .\IQMVCProject\            
+3) dotnet dev-certs https --trust
+
+Install EntityFramework project
+-----------------------------------------
+1) Install-Package Microsoft.EntityFrameworkCore.Tools
+2) dotnet add package MySql.Data.EntityFrameworkCore --version 8.0.13
+3) dotnet add package Microsoft.EntityFrameworkCore.Design
+
+update the models in projects
+--------------------------------
+1) dotnet ef dbcontext Scaffold "server=localhost;port=3306;user=root;password=root;database=InquiryDB"  MySql.Data.EntityFrameworkCore  -o Model -f
