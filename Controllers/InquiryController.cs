@@ -27,16 +27,28 @@ namespace IQMVCProject.Controllers
         public ActionResult Inquiry(IFormCollection fdata)
         {
             Console.Write("f" + Convert.ToString(fdata["ProductName"]));
-            Product product = new Product
+            // Product product = new Product
+            // {
+            //     Id = new Random().Next(500),
+            //     ProductName = Convert.ToString(fdata["ProductName"]),
+            //     CustomerName = Convert.ToString(fdata["CustomerName"]),
+            //     PhoneNumber = Convert.ToString(fdata["PhoneNumber"]),
+            //     CustomerNotes = Convert.ToString(fdata["CustomerNotes"])
+            // };
+            Inquiries inquiry = new Inquiries
             {
-                Id = new Random().Next(500),
-                ProductName = Convert.ToString(fdata["ProductName"]),
+
                 CustomerName = Convert.ToString(fdata["CustomerName"]),
+                Email = Convert.ToString(fdata["Email"]),
                 PhoneNumber = Convert.ToString(fdata["PhoneNumber"]),
+                Address = Convert.ToString(fdata["Address"]),
+                ProductId = 1,
+                // Email = Convert.ToString(fdata["CustomerName"]),
+
                 CustomerNotes = Convert.ToString(fdata["CustomerNotes"])
             };
 
-            new ProductHelper().AddProduct(product);
+            new InquiryHelper().addUpdateInquiry(inquiry);
             return RedirectToAction("Index");
 
         }
