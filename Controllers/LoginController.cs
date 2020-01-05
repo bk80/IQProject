@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
 using IQMVCProject.Models;
 using IQMVCProject.Interface;
+using IQMVCProject.BAL;
 
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -34,45 +35,28 @@ namespace IQMVCProject.Controllers
                 {
                     var Username = loginViewModel.Username;
                     var password = loginViewModel.Password;
+                    var result = new LoginHelper().isValidUser(Username, password);
 
-                    return RedirectToAction("Index", "Home");
                     // var result = _ILogin.ValidateUser(Username, password);
 
-                    // if (result != null)
-                    // {
-                    //     if (result.ID == 0 || result.ID < 0)
-                    //     {
-                    //         ViewBag.errormessage = "Entered Invalid Username and Password";
-                    //     }
-                    //     else
-                    //     {
-                    //         var RoleID = result.RoleID;
-                    //         remove_Anonymous_Cookies(); //Remove Anonymous_Cookies
-
-                    //         HttpContext.Session.SetString("UserID", Convert.ToString(result.ID));
-                    //         HttpContext.Session.SetString("RoleID", Convert.ToString(result.RoleID));
-                    //         HttpContext.Session.SetString("Username", Convert.ToString(result.Username));
-                    //         if (RoleID == 1)
-                    //         {
-                    //             return RedirectToAction("Dashboard", "Admin");
-                    //         }
-                    //         else if (RoleID == 2)
-                    //         {
-                    //             return RedirectToAction("Dashboard", "Customer");
-                    //         }
-                    //         else if (RoleID == 3)
-                    //         {
-                    //             return RedirectToAction("Dashboard", "SuperAdmin");
-                    //         }
-                    //     }
-                    // }
-                    //else
+                    if (result != null)
                     {
-                        //ViewBag.errormessage = "Entered Invalid Username and Password";
-                        //return View();
+                        //remove_Anonymous_Cookies(); //Remove Anonymous_Cookies
+
+                        //HttpContext.Session.SetString("UserID", Convert.ToString(result.UserId));
+                        var userName = result.FirstName + " " + result.LastName;
+                        //HttpContext.Session.SetString("Username", Convert.ToString(userName));
+                        return RedirectToAction("Index", "Home");
                     }
                 }
+                else
+                {
+                    ViewBag.errormessage = "Entered Invalid Username and Password";
+                    return View();
+                }
+
                 return View();
+
             }
             catch (Exception)
             {
