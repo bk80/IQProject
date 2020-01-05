@@ -12,17 +12,21 @@ namespace IQMVCProject.Controllers
         [HttpGet]
         public IActionResult Report()
         {
+            getPagSizes();
+            var products = new InquiryHelper().getInquiries(5);
+            return View(products);
+
+        }
+
+        private void getPagSizes()
+        {
             var templist = new List<SelectListItem>();
 
             for (int i = 5; i < 100; i = i + 20)
             {
                 templist.Add(new SelectListItem { Text = i.ToString(), Value = i.ToString() });
             }
-
             ViewBag.pageSize = templist;
-            var products = new ProductHelper().GetProducts(5);
-            return View(products);
-
         }
 
         public ActionResult Index()
@@ -34,9 +38,11 @@ namespace IQMVCProject.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Report(string searchString)
         {
+
             if (!String.IsNullOrEmpty(searchString))
             {
-                var products = new ProductHelper().GetProducts(searchString);
+                getPagSizes();
+                var products = new InquiryHelper().getInquiries(searchString);
                 return View(products);
             }
             return View();
