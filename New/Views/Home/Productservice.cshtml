@@ -1,0 +1,86 @@
+@model IEnumerable<IQMVCProject.Models.DBContext.Products>
+<section class="about_part section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="section_tittle">
+                <h2><span>Product</span> Service</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class=" class="col-sm-4">
+          @using (Html.BeginForm()){    
+         <p> Title: @Html.TextBox("SearchString")  </p>
+         <br/>         
+         <p><input type="submit" value="Filter" />  </p> 
+        }
+            </div>
+            <div class="col-sm-8">
+               
+                    <table id="datatable" class="table table-bordered table-striped table-condensed table-responsive">
+                    <thead>
+                    <tr>
+                    <th>
+                    @Html.DisplayNameFor(model => model.ProductName)
+                    </th>
+                    <th>
+                    @Html.DisplayNameFor(model => model.ProductDescription)
+                    </th>
+ <th>
+                    @Html.DisplayNameFor(model => model.CreatedBy)
+                    </th>
+ <th>
+                    @Html.DisplayNameFor(model => model.CreatedDate)
+                    </th>
+
+
+                    @* <th style="width: 150px">
+                    Actions
+                    </th> *@
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    @foreach (var item in Model)
+                    {
+                    <tr>
+                    <td>
+                    @Html.DisplayFor(modelItem => item.ProductName)
+                    </td>
+ <td>
+                    @Html.DisplayFor(modelItem => item.ProductDescription)
+                    </td>
+ <td>
+                    @Html.DisplayFor(modelItem => item.CreatedBy)
+                    </td>
+                     <td>
+                    @Html.DisplayFor(modelItem => item.CreatedDate)
+                    </td>
+                    @* <td class="text-center">
+                    @Html.ActionLink("Edit", "EditProduct", new { id = item.Id }) |
+                    @Html.ActionLink("Details", "ProductDetails", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "DeleteProduct", new { id = item.Id })
+                    </td> *@
+                    </tr>
+                    }
+                    </tbody>
+                    </table>
+                    @* <a href="#" class="btn_1">learn More</a> *@
+                    @* <div class="about_part_counter">
+                        <div class="single_counter">
+                            <span class="counter">100</span>
+                            <p>@Html.ActionLink("Back to List", "Index")</p>
+                        </div>
+                        <div class="single_counter">
+                            <span class="counter">300</span>
+                            <p>clients</p>
+                        </div>
+                        <div class="single_counter">
+                            <span class="counter">150</span>
+                            <p>member</p>
+                        </div>
+                    </div> *@
+               
+            </div>
+        </div>
+    </div>
+</section>
