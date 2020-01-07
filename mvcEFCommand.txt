@@ -3,6 +3,7 @@ Create New MVC project and directory (VS Code)
 1) dotnet new mvc -o IQMVCProject  
 2) code -r .\IQMVCProject\            
 3) dotnet dev-certs https --trust
+4) dotnet tool install --global dotnet-ef --version 3.0.0
 
 Install EntityFramework project
 -----------------------------------------
