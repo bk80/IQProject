@@ -10,6 +10,7 @@ Install EntityFramework project
 1) Install-Package Microsoft.EntityFrameworkCore.Tools
 2) dotnet add package MySql.Data.EntityFrameworkCore --version 8.0.13
 3) dotnet add package Microsoft.EntityFrameworkCore.Design
+4) dotnet add package - "Microsoft Asp.Net MVC"
 
 update the models in projects
 --------------------------------
